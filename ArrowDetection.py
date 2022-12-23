@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+# Setting frame size for webcam detection.
 cap = cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
@@ -9,13 +10,13 @@ cap.set(4, 480)
 def empty(a):
     pass
 
-
+# Creating trackbars for threshold values for Cann edge detection
 cv2.namedWindow('Parameters')
 cv2.resizeWindow('Parameters', 640, 240)
 cv2.createTrackbar('threshold1', 'Parameters', 255, 255, empty)
 cv2.createTrackbar('threshold2', 'Parameters', 255, 255, empty)
 
-
+# Creating a function for getting and drawing contours
 def get_contours(img, img_contour):
     contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
@@ -29,7 +30,7 @@ def get_contours(img, img_contour):
         if area > 1000 and sides == 7:
             cv2.drawContours(img_contour, cnt, -1, (255, 0, 255), 7)
 
-
+# Converting to grayscale and making a mask object to detect red colour 
 while True:
     success, vid = cap.read()
     imgContour = vid.copy()
@@ -58,13 +59,14 @@ while True:
     imgDil = cv2.dilate(imgCanny, kernel, iterations=1)
 
     get_contours(red_output, imgContour)
-
-    cv2.imshow('Gray', imgGray)
-    cv2.imshow('Canny', imgCanny)
-    cv2.imshow('Diluted', imgDil)
+    
+    # Displaying the output.
+    # cv2.imshow('Gray', imgGray)
+    # cv2.imshow('Canny', imgCanny)
+    # cv2.imshow('Diluted', imgDil)
     cv2.imshow('Contours', imgContour)
     # cv2.imshow('Vid', vid)
-    cv2.imshow('Red Arrow', redOutput)
+    cv2.imshow('Red Arrow', red_output)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
