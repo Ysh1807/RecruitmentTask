@@ -27,6 +27,13 @@ lighting conditions.
 
 STATUS :- INCOMPLETE :(
 
+# WORKFLOW OF MY PROGRAM
+1. Creating an object for webcam detection and setting frame size.
+2.Then, I created trackbars for threshold values for Canny edge detection.
+3. Next, I created a function for getting and drawing contours only on a 7 sided closed shape (for arrow detection).
+4. Then, I created a grayscale image using the ‘cv2.COLOR_BGR2GRAY’ method.
+5. I created a mask object for red color detection by converting the image to hsv colorspace using the lower and upper bound values of red color.
+
 # WHAT CAN MY PROGRAM DO?
 It can detect a red arrow quite accurately and won't detect other coloured arrows.
 
