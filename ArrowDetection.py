@@ -10,7 +10,7 @@ cap.set(4, 480)
 def empty(a):
     pass
 
-# Creating trackbars for threshold values for Cann edge detection
+# Creating trackbars for threshold values for Canny edge detection
 cv2.namedWindow('Parameters')
 cv2.resizeWindow('Parameters', 640, 240)
 cv2.createTrackbar('threshold1', 'Parameters', 255, 255, empty)
@@ -27,7 +27,7 @@ def get_contours(img, img_contour):
         approx = cv2.approxPolyDP(cnt, 0.02 * peri, True)
         sides = len(approx)
 
-        if area > 1000 and sides == 7:
+        if area > 1000 and sides == 7:      # for arrow detetion
             cv2.drawContours(img_contour, cnt, -1, (255, 0, 255), 7)
 
 # Converting to grayscale and making a mask object to detect red colour 
